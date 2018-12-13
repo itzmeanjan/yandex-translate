@@ -1,22 +1,26 @@
 #!/usr/bin/python3
 
 try:
-    from yandex_translate.get_lang_list import perform_post_query, decode_response, json_resp_handler
-    from urllib.parse import urlencode
+    from sys import path
+    from os.path import realpath, dirname
+    path.append(dirname(realpath(__file__)))
+    from get_lang_list import perform_post_query
 except ImportError as e:
     print('[!]Module Unavailable : {}'.format(str(e)))
     exit(1)
 
 
+'''
+    hint should be a list of possible language codes that's supported by yandex translate.
+    Languages in hint will be prioratized during detecting language of text.
+'''
+
+
 def detect_lang(key, text, hint=[], base_url='https://translate.yandex.net/api/v1.5/tr.json/detect'):
-    resp = ''
     if(hint):
-        resp = perform_post_query(base_url, [('key', key), ('text', urlencode([('text', text)]).split('=')[1]), ('hint', ','.join(hint))])
+        return perform_post_query(base_url, [('key', key), ('text', text), ('hint', ','.join(hint))])
     else:
-        resp = perform_post_query(base_url, [('key', key), ('text', urlencode([('text', text)]).split('=')[1])])
-    if(not resp):
-        return {}
-    return json_resp_handler(decode_response(resp))
+        return perform_post_query(base_url, [('key', key), ('text', text)])
 
 
 if __name__ == "__main__":
