@@ -12,8 +12,7 @@ def perform_post_query(url, data):
         resp = post(url, data=data)
         return resp.json()
     except Exception as e:
-        print("[!]Error : {}".format(str(e)))
-        return {}
+        return {'error': str(e)}
 
 
 '''
@@ -22,7 +21,7 @@ def perform_post_query(url, data):
 
 
 def get_langs(key, resp_lang, base_url='https://translate.yandex.net/api/v1.5/tr.json/getLangs'):
-    return perform_post_query(base_url, [('key', key), ('ui', resp_lang)]).get('langs')
+    return perform_post_query(base_url, [('key', key), ('ui', resp_lang)])
 
 
 if __name__ == '__main__':
