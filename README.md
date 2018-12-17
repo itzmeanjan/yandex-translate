@@ -1,5 +1,5 @@
 # yandex_translate
--- Yandex.Translate Service python API
+ Yandex.Translate Service python API
 
 
 **'yandex_translate' helps you to use Yandex.Translate Service from your python script. Make sure you use python3**
@@ -73,10 +73,9 @@
 
 #### push_into_db.push(db_name, data) :
 
-    - this function pushes lang_codes, received on execution of get_lang_list.get_langs() into a local [levelDB](http://leveldb.org/).
+    - pushes lang_codes, received on execution of get_lang_list.get_langs() into levelDB.
     - local levelDB is named 'lang_codes', by default.
     - data to be pushed into database, needs to be in python dict format.
-    - Here I'm using [plyvel](https://plyvel.readthedocs.io/en/latest/index.html), python interface to levelDB.
 
 
 
@@ -92,6 +91,8 @@ Response will be a python dictionary, because this program uses Yandex.Translate
 
 Even in occurrence of unexpected error, a dict will be returned, holding possible cause of error.
 
+
+You can find more info on powerful key-value based database **levelDB** [here](http://leveldb.org/). I'm using python interface [plyvel](https://plyvel.readthedocs.io/en/latest/index.html) for accessing levelDB features.
 
 
 You can get your free api key [here](https://passport.yandex.com/auth?origin=translate&retpath=https%3A%2F%2Ftranslate.yandex.com%2Fdevelopers%2Fkeys), which has some usage limitation.
