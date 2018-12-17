@@ -4,7 +4,7 @@ try:
     from sys import path
     from os.path import realpath, dirname
     path.append(dirname(realpath(__file__)))
-    from get_lang_list import perform_post_query
+    from get_lang_list import perform_post_query, check_code
 except ImportError as e:
     print('[!]Module Unavailable : {}'.format(str(e)))
     exit(1)
@@ -16,9 +16,13 @@ except ImportError as e:
 '''
 
 
-def detect_lang(key, text, hint=[], base_url='https://translate.yandex.net/api/v1.5/tr.json/detect'):
+def detect_lang(key, text, hint=[], base_url='https://translate.yandex.net/api/v1.5/tr.json/detect', db_name='lang_codes'):
     if(hint):
-        return perform_post_query(base_url, [('key', key), ('text', text), ('hint', ','.join(hint))])
+        tmp = []
+        for i in set(hint):
+            if(check_code(db_name, i)):
+                tmp.append(i)
+        return perform_post_query(base_url, [('key', key), ('text', text), ('hint', ','.join(tmp))])
     else:
         return perform_post_query(base_url, [('key', key), ('text', text)])
 
