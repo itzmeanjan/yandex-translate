@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 try:
-    import plyvel as pl
+    import plyvel as pl  # python3 api for using levelDB
 except ImportError as e:
     print('[!]Module Unavailable : {}'.format(str(e)))
     exit(1)

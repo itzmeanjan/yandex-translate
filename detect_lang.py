@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 
 try:
-    from sys import path
-    from os.path import realpath, dirname
-    path.append(dirname(realpath(__file__)))
     from get_lang_list import perform_post_query, check_code
 except ImportError as e:
     print('[!]Module Unavailable : {}'.format(str(e)))

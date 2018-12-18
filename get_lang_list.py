@@ -2,9 +2,6 @@
 
 try:
     from requests import post
-    from sys import path
-    from os.path import realpath, dirname
-    path.append(dirname(realpath(__file__)))
     from check_lang_code import check_code
     from push_into_db import push
 except ImportError as e:
@@ -17,7 +14,7 @@ def perform_post_query(url, data):
         resp = post(url, data=data)
         return resp.json()
     except Exception as e:
-        return {'error': str(e)}
+        return {'message': str(e)}
 
 
 '''

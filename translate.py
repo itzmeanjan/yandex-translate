@@ -2,9 +2,6 @@
 
 
 try:
-    from sys import path
-    from os.path import realpath, dirname
-    path.append(dirname(realpath(__file__)))
     import detect_lang as yan
 except ImportError as e:
     print('[!]Module Unavailable : {}'.format(str(e)))
