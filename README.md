@@ -53,7 +53,6 @@
  
  '''
     This function performs a post query at yandex translate and returns a python dict, holding response.
-    If a blank dict gets returned, some error has occurred.
     
     format paramter has got a default value of 'plain', can also be 'html', 
     in that case make you that you pass a html string as text parameter.
